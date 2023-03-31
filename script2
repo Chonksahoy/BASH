@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Prompt user for new username
+read -p "Enter username: " username
+
+# Check if user already exists
+if id "$username" >/dev/null 2>&1; then
+  echo "User $username already exists."
+  exit 1
+fi
+
+# Create new user with home directory
+sudo useradd -m "$username"
+
+# Output success message
+echo "User $username has been created with home directory: /home/$username"
